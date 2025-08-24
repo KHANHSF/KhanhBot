@@ -160,10 +160,10 @@ opening_books:
       selection: best_move
       names:
         - blackatomic
-    horde:
-      selection: best_move
-      names:
-        - horde
+#    horde:
+#      selection: best_move
+#      names:
+#        - horde
     racingkings_white_human:
       selection: best_move
       names:
@@ -394,6 +394,7 @@ books:
   black3check: "./books/black3check.bin"
   small: "./books/small.bin"
   nimas: "./books/nimas.bin"
+
 
 
 
