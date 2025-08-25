@@ -66,8 +66,20 @@ jobs:
             exit(1)
         EOF
         
-    - name: Launch bot
-      timeout-minutes: 340
-      run: |
-        echo "🤖 Starting bot..."
-        python3 user_interface.py -u "tournament Sn4mSXSN"
+    - name: Run Bot
+        run: |
+          echo "Starting bot..."
+          python3 -u user_interface.py "matchmaking" &
+          PID=$!
+          
+          # Auto-exit after 350 minutes (so restart runs without overlap)
+          ( sleep 20700 && echo "Time up. Killing bot..." && kill -SIGTERM $PID ) &
+          
+          wait $PID
+          echo "Bot ended cleanly."
+
+      - name: 🔁 Self-Restart (Fire-and-Forget)
+        if: always()
+        run: gh workflow run run-bot.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
