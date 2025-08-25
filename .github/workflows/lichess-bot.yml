@@ -78,6 +78,6 @@ jobs:
 
     - name: 🔁 Self-Restart (Fire-and-Forget)
       if: always()
-      run: gh workflow run run-bot.yml
+      run: gh workflow run lichess-bot.yml
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
