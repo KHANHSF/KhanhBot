@@ -10,7 +10,7 @@ env:
 
 jobs:
   deploy-bot:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     timeout-minutes: 350
     
     # Removed matrix strategy to run single instance
