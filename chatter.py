@@ -50,7 +50,7 @@ class Chatter:
         self.print_eval_rooms: set[str] = set()
         self.openings_db = load_openings("openings.txt")
 
-    async def handle_chat_message(self, chatLine_Event: dict, takeback_count: int, max_takebacks: int) -> None:
+    async def handle_chat_message(self, chatLine_Event: dict, takeback_count: int = 0, max_takebacks: int = 0) -> None:
         chat_message = Chat_Message.from_chatLine_event(chatLine_Event)
 
         if chat_message.username == 'lichess':
