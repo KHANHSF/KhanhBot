@@ -1,8 +1,6 @@
 name: Lichess Bot
 
 on:
-  schedule:
-    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 env:
@@ -11,7 +9,6 @@ env:
 jobs:
   deploy-bot:
     runs-on: ubuntu-latest
-    timeout-minutes: 350
     
     # Removed matrix strategy to run single instance
     steps:
@@ -63,14 +60,6 @@ jobs:
             print(f"❌ Error: {e}")
             exit(1)
         EOF
-
-
-    - name: Connect to VPN (EU)
-      run: |
-        sudo apt-get install -y openvpn
-        sudo openvpn --config eu-server.ovpn &
-        sleep 10
-
         
     - name: Launch bot
       run: |
