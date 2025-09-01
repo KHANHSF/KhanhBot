@@ -8,7 +8,7 @@ env:
 
 jobs:
   deploy-bot:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     
     # Removed matrix strategy to run single instance
     steps:
@@ -64,7 +64,7 @@ jobs:
     - name: Launch bot
       run: |
         echo "🤖 Starting bot..."
-        python3 user_interface.py -u "tournament zBNHRrlk" &
+        python3 user_interface.py -u "matchmaking" &
         PID=$!
           
         # Auto-exit after 350 minutes (so restart runs without overlap)
