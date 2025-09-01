@@ -8,7 +8,7 @@ env:
 
 jobs:
   deploy-bot:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     
     # Removed matrix strategy to run single instance
     steps:
