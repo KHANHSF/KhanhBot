@@ -1,6 +1,6 @@
 token: "XXXXXXXXXXXXXXXXXXX"         # Lichess OAuth2 Token.
 
-engine:
+engines:
   variants:                               # Engine used for variants when no suitable special engine is configured.
     dir: "./engines/"                      # Directory containing the engine.
     name: "fairy-stockfish_x86-64-bmi2"               # Binary name of the engine to use.
@@ -288,6 +288,7 @@ books:
   black3check: "./books/black3check.bin"
   small: "./books/small.bin"
   nimas: "./books/nimas.bin"
+
 
 
 
