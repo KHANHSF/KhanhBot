@@ -64,7 +64,7 @@ jobs:
     - name: Launch bot
       run: |
         echo "🤖 Starting bot..."
-        python3 user_interface.py --upgrade "python user_interface.py "t rTIW46jz" "t H2cgYCoM" "t cwCZD5Qd" "t cLCqUiHC" "t 5sx9Kyda" "t BAdj3ZMy" "t CydbQlns" "t FpXaQRIn"" &
+        python3 user_interface.py --upgrade "python user_interface.py "tournament rTIW46jz" "tournament H2cgYCoM" "tournament cwCZD5Qd" "tournament cLCqUiHC" "tournament 5sx9Kyda" "tournament BAdj3ZMy" "tournament CydbQlns" "tournament FpXaQRIn"" &
         PID=$!
           
         # Auto-exit after 350 minutes (so restart runs without overlap)
