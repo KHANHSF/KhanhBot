@@ -1,60 +1,21 @@
 token: "XXXXXXXXXXXXXXXXXXX"         # Lichess OAuth2 Token.
 
-engines:
-  bullet:                               # Engine used for standard chess and when no suitable special engine is configured.
-    dir: "./engines"                      # Directory containing the engine.
-    name: "sf"                     # Binary name of the engine to use.
-    ponder: true                          # Think on opponent's time.
-    silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 10.0         # Optimized for bullet games.
-    uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 8                          # Increased threads for Threadripper power.
-      Hash: 4000                           # Increased hash for better position evaluation.
-      Move Overhead: 250                 # Reduced for faster bullet moves.
-    limits:                               # Limits that end the move calculation early.
-   #   depth: 28                          # Maximum search depth for bullet.
-
-  chess960:                               # Engine used for standard chess and when no suitable special engine is configured.
-    dir: "./engines"                      # Directory containing the engine.
-    name: "sf"                     # Binary name of the engine to use.
-    ponder: true                          # Think on opponent's time.
-    silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 3.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
-    uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 8                          # Max CPU threads the engine can use.
-      Hash: 5100                           # Max memory (in megabytes) the engine can allocate.
-      Move Overhead: 200                  # Increase if your bot flags games too often.
-    limits:
-    
-  standard:                               # Engine used for standard chess and when no suitable special engine is configured.
-    dir: "./engines"                      # Directory containing the engine.
-    name: "ShashChess39"                     # Binary name of the engine to use.
+ variants:                               # Engine used for variants when no suitable special engine is configured.
+    dir: "./engines/"                      # Directory containing the engine.
+    name: "fairy-stockfish_x86-64-bmi2"               # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
     move_overhead_multiplier: 1.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 8                          # Maximum Threadripper power for longer games.
-      Hash: 10000                           # Massive hash for deep calculation.
-      Move Overhead: 100                  # Increase if your bot flags games too often.
-    limits:    
-      time: 0.7
-  #    depth: 35                           # Deep search for standard games.
-  #    nodes: 8000000                      # High node count for thorough analysis.
-  variants:                               # Engine used for variants when no suitable special engine is configured.
-    dir: "./engines"                      # Directory containing the engine.
-    name: "fairy-stockfish-largeboard_x86-64-bmi2"           # Binary name of the engine to use. (You need to download Fairy-Stockfish and place it in the engines directory)
-    ponder: true                          # Think on opponent's time.
-    silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 1.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
-    uci_options:                          # Arbitrary UCI options passed to the engine.
-      Threads: 8                          # High thread count for variants.
-      Hash: 11000                           # Large hash for variant calculations.
-      Move Overhead: 100                  # Increase if your bot flags games too often.
-      Use NNUE: true
+      Threads: 4                          # Max CPU threads the engine can use.
+      Hash: 4096                           # Max memory (in megabytes) the engine can allocate.
+      Move Overhead: 250                  # Increase if your bot flags games too often.
       EvalFile: "3check-cb5f517c228b.nnue:antichess-dd3cbe53cd4e.nnue:atomic-2cf13ff256cc.nnue:crazyhouse-8ebf84784ad2.nnue:horde-28173ddccabe.nnue:kingofthehill-978b86d0e6a4.nnue:racingkings-636b95f085e3.nnue"
-    limits:   # Limits that end the move calculation early.
-  #    depth: 30                           # Deep variant search.
- #     nodes: 6000000                      # High node count for variants.
+    limits:                               # Limits that end the move calculation early.
+ #     time: 5.0                           # Max time per move in seconds.
+    
+#     depth: 26                           # Max depth per move.
+#     nodes: 4000000                      # Max nodes per move.
 # Use the same pattern for 'bullet', 'blitz', 'rapid', 'classical', time controls in initial_minutes+increment_seconds format,
 # 'antichess', 'atomic', 'chess960', 'crazyhouse', 'horde', 'kingofthehill', 'racingkings' and '3check' as well.
 # Append '_white', '_black', '_human' and/or '_tournament' to use the engine only as the specific color, against humans or in tournaments.
@@ -99,32 +60,6 @@ opening_books:
 #     selection: best_move                # Move selection is one of "weighted_random", "uniform_random" or "best_move".
 #     names:                              # List of names of books to use as black.
 #       - BlackBook
-    0.5+0:                          # 30 sec bullet games (0.5+0)
-      selection: best_move
-      max_depth: 20                    # Limit book depth so engine evaluates positions
-      names:
-        - nimas
-    bullet_white:                            # Other bullet games (1+0)
-      selection: weighted_random
-      max_depth: 20                    # Limit book depth so engine evaluates positions
-      names:
-        - small
-        - probook
-    bullet_black:                            # Aggressive black bullet setup
-      selection: best_move                # Always play strongest moves as black
-      max_depth: 15                    # Deeper book usage for black preparation
-      names:
-        - small
-        - probook
-    3+0:                             # Blitz games (5+3)
-      selection: weighted_random
-      names:
-        - small
-        - probook
-    standard:                           
-      selection: weighted_random
-      names:
-        - small
     antichess_white:
       selection: best_move
       names:
@@ -177,47 +112,6 @@ opening_books:
       selection: best_move
       names:
         - black3check    
-    standard_human:
-      selection: weighted_random
-      random_selection: true  
-      names:
-        - Nakamura
-        - Carlsen
-        - Caruana
-        - Ding
-        - Gukesh
-    bullet_human:
-      selection: weighted_random
-      random_selection: true
-      names:
-        - Kasparov
-        - Carlsen
-        - Caruana
-        - Ding
-        - Gukesh
-        - Nakamura
-        - Nepomniachtchi
-    blitz_human:
-      selection: weighted_random
-      random_selection: true
-      names:
-        - Nakamura
-        - Carlsen
-        - Nepomniachtchi
-    rapid_human:
-      selection: best_move
-      random_selection: true
-      names:
-        - Kasparov
-        - Carlsen
-        - Caruana
-        - Ding
-        - Gukesh
-        - Nakamura
-        - Nepomniachtchi
-#   Use the same pattern for 'bullet', 'blitz', 'rapid', 'classical', time controls in initial_minutes+increment_seconds format,
-#   'antichess', 'atomic', 'chess960', 'crazyhouse', 'horde', 'kingofthehill', 'racingkings' and '3check' as well.
-#   Append '_white', '_black', '_human' and/or '_tournament' to use the book only as the specific color, against humans or in tournaments.
 
 online_moves:
   opening_explorer:
@@ -286,11 +180,7 @@ challenge:                                # Incoming challenges.
 # max_initial: 315360000                  # Maximum amount of initial time to accept a challenge.
   min_rating_diff: 0                     # Accept all bot challenges - no minimum rating difference
   max_rating_diff: 300                   # Accept much stronger opponents for training
-  variant_rating_diffs:
-    standard:
-      max: 200            
-    chess960:
-      max: 350             
+  variant_rating_diffs:           
     antichess:
       max: 500  
     atomic:
@@ -306,9 +196,9 @@ challenge:                                # Incoming challenges.
     threeCheck:
       max: 500
   variants:                               # Chess variants to accept (https://lichess.org/variant).
-    - standard
-    - chess960
-    - fromPosition
+#    - standard
+#    - chess960
+#    - fromPosition
     - antichess
     - atomic
     - crazyhouse
@@ -397,6 +287,7 @@ books:
   black3check: "./books/black3check.bin"
   small: "./books/small.bin"
   nimas: "./books/nimas.bin"
+
 
 
 
