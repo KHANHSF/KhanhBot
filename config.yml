@@ -6,13 +6,13 @@ engines:
     name: "sf"               # Binary name of the engine to use.
     ponder: true                          # Think on opponent's time.
     silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 9.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
+    move_overhead_multiplier: 1.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
     uci_options:                          # Arbitrary UCI options passed to the engine.
       Threads: 4                          # Max CPU threads the engine can use.
       Hash: 4096                           # Max memory (in megabytes) the engine can allocate.
-      Move Overhead: 250                  # Increase if your bot flags games too often.
+      Move Overhead: 200                  # Increase if your bot flags games too often.
     limits:                               # Limits that end the move calculation early.
-      time: 3.0                           # Max time per move in seconds.
+#      time: 3.0                           # Max time per move in seconds.
     
 #     depth: 26                           # Max depth per move.
 #     nodes: 4000000                      # Max nodes per move.
@@ -67,10 +67,10 @@ opening_books:
   priority: 400                           # Priority with which this move source is used. Higher priority is used first.
   read_learn: false                       # Whether to read the learn values from the books.
   books:
-#   bullet:
-#     selection: weighted_random          # Move selection is one of "weighted_random", "uniform_random" or "best_move".
-#     names:                              # List of names of books to use in bullet.
-#       - BulletBook
+    standard:
+      selection: weighted_random          # Move selection is one of "weighted_random", "uniform_random" or "best_move".
+      names:                              # List of names of books to use in bullet.
+        - nimas
 #       - DefaultBook
 #   standard_black:
 #     selection: best_move                # Move selection is one of "weighted_random", "uniform_random" or "best_move".
@@ -303,6 +303,7 @@ books:
   black3check: "./books/black3check.bin"
   small: "./books/small.bin"
   nimas: "./books/nimas.bin"
+
 
 
 
