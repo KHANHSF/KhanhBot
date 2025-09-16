@@ -22,8 +22,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "OhNoMyKing-Code"
+          git config --global user.email "lichessbotvietnam@gmail.com"
           git add lichess_game.py botli_dataclasses.py configs.py config.py
           git commit -m "Sync files with Torom/BotLi" || echo "No changes to commit"
           git push
