@@ -192,26 +192,11 @@ challenge:                                # Incoming challenges.
 # min_initial: 0                          # Minimum amount of initial time to accept a challenge.
 # max_initial: 315360000                  # Maximum amount of initial time to accept a challenge.
   min_rating_diff: 0                     # Accept all bot challenges - no minimum rating difference
-  max_rating_diff: 300                   # Accept much stronger opponents for training
-  variant_rating_diffs:           
-    antichess:
-      max: 500  
-    atomic:
-      max: 400              
-    crazyhouse:
-      max: 400              
-    horde:
-      max: 500
-    kingOfTheHill:
-      max: 500
-    racingKings:
-      max: 500
-    threeCheck:
-      max: 500
+  max_rating_diff: 300                   # Accept 
   variants:                               # Chess variants to accept (https://lichess.org/variant).
-#    - standard
-#    - chess960
-#    - fromPosition
+    - standard
+    - chess960
+    - fromPosition
     - antichess
     - atomic
     - crazyhouse
@@ -300,6 +285,7 @@ books:
   black3check: "./books/black3check.bin"
   small: "./books/small.bin"
   nimas: "./books/nimas.bin"
+
 
 
 
